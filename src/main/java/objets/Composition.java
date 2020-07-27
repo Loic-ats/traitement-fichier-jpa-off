@@ -1,6 +1,6 @@
 package objets;
 
-public abstract class Compositon {
+public abstract class Composition {
 	
 	private String energie100g;
 	private String graisse100g;
@@ -27,7 +27,7 @@ public abstract class Compositon {
 	private String presenceHuilePalme;
 
 	
-	public Compositon(String energie100g, String graisse100g, String sucres100g, String fibres100g,
+	public Composition(String energie100g, String graisse100g, String sucres100g, String fibres100g,
 			String proteines100g, String sel100g, String vitA100g, String vitD100g, String vitE100g, String vitK100g,
 			String vitC100g, String vitB1100g, String vitB2100g, String vitPP100g, String vitB6100g, String vitB9100g,
 			String vitB12100g, String calcium100g, String magnesium100g, String iron100g, String fer100g,

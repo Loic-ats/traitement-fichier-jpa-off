@@ -1,6 +1,6 @@
 package objets;
 
-public abstract class Additif {
+public class Additif {
 
 	
 	private String Additif;

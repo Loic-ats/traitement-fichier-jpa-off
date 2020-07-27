@@ -1,6 +1,6 @@
 package objets;
 
-public abstract class Allergene {
+public class Allergene {
 
 	private String Additif;
 

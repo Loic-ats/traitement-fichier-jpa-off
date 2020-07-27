@@ -1,15 +1,15 @@
 package objets;
 
-public abstract class Ingredients extends Additif {
+public class Ingredients {
 
-	private String listing;
+	private String ingredient;
 
-	public void setListing(String listing) {
-		this.listing = listing;
+	public void setListing(String ingredient) {
+		this.ingredient = ingredient;
 	}
 
 	public String getListing() {
-		return listing;
+		return ingredient;
 	}
 
 }

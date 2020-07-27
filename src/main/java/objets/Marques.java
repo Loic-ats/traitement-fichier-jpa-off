@@ -1,7 +1,6 @@
 package objets;
 
-public abstract class Marques {
-
+public class Marques {
 	
 	private String marques;
 
@@ -17,6 +16,5 @@ public abstract class Marques {
 	public String toString() {
 		return "Marques [marques=" + marques + "]";
 	}
-
 	
 }
