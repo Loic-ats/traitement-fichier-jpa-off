@@ -1,21 +1,21 @@
 package objets;
 
-public class Marques {
+public class Categories {
+
 	
 	private int id;
 	private String nom;
 	
-	
-	public Marques(int id, String nom) {
+	public Categories(int id, String nom) {
 		super();
 		this.id = id;
 		this.nom = nom;
 	}
 	
-	public int getId() {
+	public int getid() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setid(int id) {
 		this.id = id;
 	}
 	public String getNom() {
@@ -27,9 +27,7 @@ public class Marques {
 
 	@Override
 	public String toString() {
-		return "Marques [id=" + id + ", nom=" + nom + "]";
+		return "Categories [id=" + id + ", nom=" + nom + "]";
 	}
 
-
-	
 }

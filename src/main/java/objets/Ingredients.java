@@ -2,14 +2,35 @@ package objets;
 
 public class Ingredients {
 
-	private String ingredient;
+	private int id;
+	private String nom;
+	
+	
+	public Ingredients(int id, String nom) {
+		super();
+		this.id = id;
+		this.nom = nom;
+	}
+	
 
-	public void setListing(String ingredient) {
-		this.ingredient = ingredient;
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public int getid() {
+		return id;
+	}
+	public void setid(int id) {
+		this.id = id;
 	}
 
-	public String getListing() {
-		return ingredient;
+
+	@Override
+	public String toString() {
+		return "Ingredients [id=" + id + ", nom=" + nom + "]";
 	}
+
 
 }

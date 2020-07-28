@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
+import objets.Ingredients;
 import objets.Produits;
 
 public class LectureFichier {
@@ -15,13 +16,13 @@ public class LectureFichier {
 
 		try {
 			File file = new File(
-					"D:\\DONNEES ISA\\Documents\\Diginamic\\Cours\\JDBC\\AutoFormation\\open-food-facts.csv");
+					"E:\\Developpements\\Projets\\Donnees\\openFoodFacts.csv");
 			List<String> lignes = FileUtils.readLines(file, "UTF-8");
 
 			System.out.println("taille fichier =" + lignes.size());
 
-			ArrayList<Produits> list = new ArrayList<Produits>();
-
+			ArrayList<Ingredients> list = new ArrayList<Ingredients>();
+						
 			for (String ligne : lignes) {
 
 				String[] morceaux = ligne.split("\\|", -1);
@@ -33,7 +34,10 @@ public class LectureFichier {
 				String marques = morceaux[1];
 				String nom = morceaux[2];
 				String nutritionGradeFr = morceaux[3];
-				String ingredients = morceaux[4];									
+				String ingredients = morceaux[4];
+			
+				list = Splitter.splitIngredients(morceaux[4]);
+				
 				String energie100g = morceaux[5];
 				String graisse100g = morceaux[6];
 				String sucres100g = morceaux[7];
@@ -57,10 +61,14 @@ public class LectureFichier {
 				String fer100g = morceaux[25];
 				String betaCarotene100g = morceaux[26];
 				String presenceHuilePalme = morceaux[27];
+				
 				String allergene = morceaux[28];
 				String additif = morceaux[29];
-
-			}
+				
+		
+			} 
+			
+			System.out.println("La liste des ingredients avec doublon est " + list);
 			
 			// Supprimer la première ligne de l'ArrayList qui contient les titres des
 			// colonnes

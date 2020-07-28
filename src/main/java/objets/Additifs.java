@@ -1,16 +1,16 @@
 package objets;
 
-public class Marques {
+public class Additifs {
 	
 	private int id;
 	private String nom;
 	
-	
-	public Marques(int id, String nom) {
+	public Additifs(int id, String nom) {
 		super();
 		this.id = id;
 		this.nom = nom;
-	}
+	} 
+	
 	
 	public int getId() {
 		return id;
@@ -24,12 +24,7 @@ public class Marques {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
-	@Override
-	public String toString() {
-		return "Marques [id=" + id + ", nom=" + nom + "]";
-	}
-
-
 	
+
+
 }
