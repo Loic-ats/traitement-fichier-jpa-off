@@ -18,24 +18,17 @@ public class LectureFichier {
 			File file = new File(
 					"E:\\Developpements\\Projets\\Donnees\\openFoodFacts.csv");
 			List<String> lignes = FileUtils.readLines(file, "UTF-8");
-
-			System.out.println("taille fichier =" + lignes.size());
-
+			
 			ArrayList<Ingredients> list = new ArrayList<Ingredients>();
-						
+			
 			for (String ligne : lignes) {
 
 				String[] morceaux = ligne.split("\\|", -1);
-
-				System.out.println("taille morceaux " + morceaux.length);
-				System.out.println(ligne);
 
 				String categories = morceaux[0];
 				String marques = morceaux[1];
 				String nom = morceaux[2];
 				String nutritionGradeFr = morceaux[3];
-				String ingredients = morceaux[4];
-			
 				list = Splitter.splitIngredients(morceaux[4]);
 				
 				String energie100g = morceaux[5];
@@ -61,15 +54,14 @@ public class LectureFichier {
 				String fer100g = morceaux[25];
 				String betaCarotene100g = morceaux[26];
 				String presenceHuilePalme = morceaux[27];
-				
 				String allergene = morceaux[28];
 				String additif = morceaux[29];
-				
+		
 		
 			} 
 			
-			System.out.println("La liste des ingredients avec doublon est " + list);
 			
+			System.out.println("La liste avec les doublon est " + list);
 			// Supprimer la première ligne de l'ArrayList qui contient les titres des
 			// colonnes
 			// list.remove(0);
