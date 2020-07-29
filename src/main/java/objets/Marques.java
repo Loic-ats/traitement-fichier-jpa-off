@@ -2,20 +2,19 @@ package objets;
 
 public class Marques {
 	
-	private int id;
+	private long id;
 	private String nom;
 	
 	
-	public Marques(int id, String nom) {
+	public Marques(String nom) {
 		super();
-		this.id = id;
 		this.nom = nom;
 	}
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getNom() {

@@ -2,13 +2,12 @@ package objets;
 
 public class Ingredients {
 
-	private int id;
+	private long id;
 	private String nom;
 	
 	
-	public Ingredients(int id, String nom) {
+	public Ingredients(String nom) {
 		super();
-		this.id = id;
 		this.nom = nom;
 	}
 	
@@ -19,10 +18,10 @@ public class Ingredients {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public int getid() {
+	public long getid() {
 		return id;
 	}
-	public void setid(int id) {
+	public void setid(long id) {
 		this.id = id;
 	}
 

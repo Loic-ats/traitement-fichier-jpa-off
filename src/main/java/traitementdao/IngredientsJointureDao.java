@@ -1,5 +1,6 @@
 package traitementdao;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -9,25 +10,63 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import objets.Categories;
 
 
-public class CategorieDaoTest implements CategorieDao{
+import objets.Ingredients;
+
+
+public class IngredientsJointureDao implements IngredientsDao {
 
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
+		IngredientsJointureDao ing = new IngredientsJointureDao();
+
+		List<Ingredients> listeIng = ing.extraire();
+
+		ing.insert(new Ingredients("betterave"));
+
+		listeIng = ing.extraire();
+
+		for (Ingredients ingredient : listeIng) {
+
+			System.out.println(ingredient);
+
+		}
 
 	}
 
-	
+	public Connection getConnection() {
 
-	public List<Categories> extraire() {
+		// recupere fichier properties
+
+		ResourceBundle db = ResourceBundle.getBundle("database");
+
+		try {
+
+			// enregistre le pilote
+
+			Class.forName(db.getString("db.driver"));
+
+			return DriverManager.getConnection(db.getString("db.url"), db.getString("db.user"),
+
+					db.getString("db.pass"));
+
+		} catch (ClassNotFoundException | SQLException e) {
+
+			throw new RuntimeException();
+
+		}
+
+	}
+
+	@Override
+
+	public List<Ingredients> extraire() {
 
 		Connection connection = null;
 
-		List<Categories> listeCat = new ArrayList<Categories>();
+		List<Ingredients> listeIng = new ArrayList<>();
 
 		try {
 
@@ -35,13 +74,13 @@ public class CategorieDaoTest implements CategorieDao{
 
 			Statement monCanal = connection.createStatement();
 
-			ResultSet monResultat = monCanal.executeQuery("SELECT * FROM categories;");
+			ResultSet monResultat = monCanal.executeQuery("SELECT * FROM ingredients;");
 
 			while (monResultat.next()) {
 
 				// tant que cest vrai on continue
 
-				listeCat.add(new Categories(monResultat.getInt("ID"), monResultat.getString("nom")));
+				listeIng.add(new Ingredients(monResultat.getString("nom")));
 
 			}
 
@@ -69,11 +108,13 @@ public class CategorieDaoTest implements CategorieDao{
 
 		}
 
-		return listeCat;
-
+		return listeIng;
 	}
 
-	public void insert(Categories categories) {
+
+	@Override
+
+	public void insert(Ingredients ingredients) {
 
 		Connection connection = null;
 
@@ -83,21 +124,13 @@ public class CategorieDaoTest implements CategorieDao{
 
 			Statement monCanal = connection.createStatement();
 
-			int nb = monCanal.executeUpdate(
+			int nb = monCanal.executeUpdate("insert into ingredients (id, nom) " + "values (" + ingredients.getid()
 
-				 "insert into categories (ID, nom) " + 
-
-			"values (" 
-
-			+ categories.getid() + ",'"
-
-			+ categories.getNom() + "',;");
-
-			
+					+ ",'" + ingredients.getNom() + ");");
 
 			if (nb == 1) {
 
-				System.out.println("categories ajouté!");
+				System.out.println("Ingrédients ajouté!");
 
 			}
 
@@ -122,7 +155,11 @@ public class CategorieDaoTest implements CategorieDao{
 			}
 
 		}
+
 	}
+
+
+	@Override
 
 	public int update(String ancienNom, String nouveauNom) {
 
@@ -138,11 +175,7 @@ public class CategorieDaoTest implements CategorieDao{
 
 			nb = monCanal
 
-					.executeUpdate(
-
-							"update categories SET nom='" + nouveauNom + 
-
-							"' where nom='" + ancienNom + "';");
+					.executeUpdate("update ingrédients SET nom='" + nouveauNom + "' where nom='" + ancienNom + "';");
 
 			monCanal.close();
 
@@ -160,7 +193,6 @@ public class CategorieDaoTest implements CategorieDao{
 
 			} catch (SQLException e) {
 
-
 				System.err.println("Probleme de connexion" + e.getMessage());
 
 			}
@@ -168,30 +200,6 @@ public class CategorieDaoTest implements CategorieDao{
 		}
 
 		return nb;
-
-	}
-
-	public Connection getConnection() {
-
-		// recupere fichier properties
-
-		ResourceBundle db = ResourceBundle.getBundle("database");
-
-		try {
-
-			// enregistre le pilote
-
-			Class.forName(db.getString("db.driver"));
-
-			return DriverManager.getConnection(db.getString("db.url"), db.getString("db.user"),
-
-					db.getString("db.pass"));
-
-		} catch (ClassNotFoundException | SQLException e) {
-
-			throw new RuntimeException();
-
-		}
 
 	}
 

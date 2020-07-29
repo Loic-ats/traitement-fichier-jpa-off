@@ -2,25 +2,34 @@ package utils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
+import objets.Additifs;
+import objets.Allergenes;
+import objets.Categories;
 import objets.Ingredients;
+import objets.Marques;
 import objets.Produits;
+import traitementdao.ProduitsDaoTest;
 
-public class LectureFichier {
+public class LectureFichier{
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 
 		try {
-			File file = new File(
-					"E:\\Developpements\\Projets\\Donnees\\openFoodFacts.csv");
+			File file = new File("E:\\Developpements\\Projets\\Donnees\\openFoodFacts.csv");
 			List<String> lignes = FileUtils.readLines(file, "UTF-8");
 			
-			ArrayList<Ingredients> list = new ArrayList<Ingredients>();
+			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/open-food-fact?useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","root","");
 			
+			lignes.remove(0);	
+				
 			for (String ligne : lignes) {
 
 				String[] morceaux = ligne.split("\\|", -1);
@@ -29,8 +38,14 @@ public class LectureFichier {
 				String marques = morceaux[1];
 				String nom = morceaux[2];
 				String nutritionGradeFr = morceaux[3];
-				list = Splitter.splitIngredients(morceaux[4]);
-				
+
+				Produits produit = new Produits(nom);
+				produit.setCategorie(new Categories(categories));
+				produit.setMarque(new Marques(marques));
+				produit.setGradeNutri(nutritionGradeFr);
+
+				List <Ingredients> ListeIngredient = Splitter.splitIngredients(morceaux[4]);
+					
 				String energie100g = morceaux[5];
 				String graisse100g = morceaux[6];
 				String sucres100g = morceaux[7];
@@ -54,17 +69,40 @@ public class LectureFichier {
 				String fer100g = morceaux[25];
 				String betaCarotene100g = morceaux[26];
 				String presenceHuilePalme = morceaux[27];
-				String allergene = morceaux[28];
-				String additif = morceaux[29];
-		
-		
-			} 
+												
+				List <Additifs> ListeAdditif = Splitter.splitAdditifs(morceaux[28]);				
+				produit.setAdditif(ListeAdditif);
+				List <Allergenes> ListeAllergene = Splitter.splitAllergenes(morceaux[29]);
+				produit.setAllergenes(ListeAllergene);
+				
+				produit.setEnergie100g(energie100g);
+				produit.setGraisse100g(graisse100g);
+				produit.setSucres100g(sucres100g);
+				produit.setFibres100g(fibres100g);
+				produit.setProteines100g(proteines100g);
+				produit.setSel100g(sel100g);
+				produit.setVitA100g(vitA100g);
+				produit.setVitD100g(vitD100g);
+				produit.setVitE100g(vitE100g);
+				produit.setVitK100g(vitK100g);
+				produit.setVitC100g(vitC100g);
+				produit.setVitB1100g(vitB1100g);
+				produit.setVitB2100g(vitB2100g);
+				produit.setVitPP100g(vitPP100g);
+				produit.setVitB6100g(vitB6100g);
+				produit.setVitB9100g(vitB9100g);
+				produit.setVitB12100g(vitB12100g);
+				produit.setCalcium100g(calcium100g);
+				produit.setMagnesium100g(magnesium100g);
+				produit.setIron100g(iron100g);
+				produit.setFer100g(fer100g);
+				produit.setBetaCarotene100g(betaCarotene100g);
+				produit.setPresenceHuilePalme(presenceHuilePalme);
 			
-			
-			System.out.println("La liste avec les doublon est " + list);
-			// Supprimer la première ligne de l'ArrayList qui contient les titres des
-			// colonnes
-			// list.remove(0);
+				System.out.println(produit);
+				ProduitsDaoTest.insererProduit(conn, produit);
+				
+			}
 
 			System.out.println("Nombre de lignes :" + lignes.size());
 

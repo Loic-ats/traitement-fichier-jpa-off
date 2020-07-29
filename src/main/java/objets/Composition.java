@@ -58,7 +58,7 @@ public class Composition {
 
 	}
 
-	public String getEnergie100g() {
+	public String getenergie100g() {
 		return energie100g;
 	}
 

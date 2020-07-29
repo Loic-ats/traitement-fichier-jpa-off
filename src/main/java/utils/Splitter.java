@@ -1,25 +1,57 @@
 package utils;
 
+import objets.Additifs;
+import objets.Allergenes;
 import objets.Ingredients;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Arrays;
+import java.util.List;
+
 
 public class Splitter {
 
 	public static ArrayList <Ingredients> splitIngredients(String morceaux) {
 
-		String [] lignes = morceaux.split(",", -1);
+		
+		List<String> ingredients = Arrays.asList(morceaux.split(",",-1));
+				
+		ArrayList<Ingredients> listeIngredients = new ArrayList<Ingredients>();
 
-		ArrayList<Ingredients> list = new ArrayList<Ingredients>();
-
-			for (int i = 0; i < lignes.length; i++) {
-
-			list.add(new Ingredients(i, lignes[i].trim()));
+			for (String nomingre : ingredients) {
+				
+				listeIngredients.add(new Ingredients(nomingre));
 		}
 
-				return list;
+				return listeIngredients;
+	}
+	
+	public static ArrayList <Additifs> splitAdditifs(String morceaux) {
+	
+		List<String> additifs = Arrays.asList(morceaux.split(",",-1));
+		
+		ArrayList<Additifs> listeAdditifs = new ArrayList<Additifs>();
+
+		for (String nomadditifs : additifs) {
+			
+			listeAdditifs.add(new Additifs(nomadditifs));
+	}
+
+		return listeAdditifs;
+	}
+	
+	public static ArrayList <Allergenes> splitAllergenes(String morceaux) {
+		
+		List<String> allergenes = Arrays.asList(morceaux.split(",",-1));
+		
+		ArrayList<Allergenes> listeAllergenes = new ArrayList<Allergenes>();
+
+		for (String nomallergenes : allergenes) {
+			
+			listeAllergenes.add(new Allergenes(nomallergenes));
+	}
+
+				return listeAllergenes;
 	}
 
 }
