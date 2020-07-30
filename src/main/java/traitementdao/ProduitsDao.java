@@ -1,17 +1,18 @@
 package traitementdao;
 
-import java.util.List;
+import java.sql.Connection;
+import java.sql.SQLException;
 import objets.Produits;
 
 public interface ProduitsDao{
 
-	List<Produits> extraire();
+	//List<Produits> extraire();
 
-	void insert(Produits produits);
+	void insererProduit(Connection conn,Produits produits) throws SQLException;
 
-	int update(String ancienNom, String nouveauNom);
+	//int update(String ancienNom, String nouveauNom);
 
-	boolean delete(Produits produits);
+	//boolean delete(Produits produits);
 	
 }
 	

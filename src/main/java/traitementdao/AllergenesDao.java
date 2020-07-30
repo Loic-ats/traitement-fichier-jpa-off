@@ -1,15 +1,19 @@
 package traitementdao;
 
-import java.util.List;
-
-import objets.Allergenes;
+import java.sql.Connection;
+import java.sql.SQLException;
+import objets.Produits;
 
 public interface AllergenesDao {
+	
+	public Connection getConnection();
 
-	List<Allergenes> extraire();
+	//List<Ingredients> extraire();
 
-	void insert(Allergenes allergenes);
+	void insertAllergenes(Connection conn,Produits produits) throws SQLException ;
 
-	int update(String ancienNom, String nouveauNom);
+	//int update(String ancienNom, String nouveauNom);
+	
+	//boolean delete(Produits produits);
 	
 }

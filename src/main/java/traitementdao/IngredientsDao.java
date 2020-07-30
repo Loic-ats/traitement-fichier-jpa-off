@@ -1,15 +1,20 @@
 package traitementdao;
 
-import java.util.List;
+import java.sql.Connection;
+import java.sql.SQLException;
 
-import objets.Ingredients;
+import objets.Produits;
 
 public interface IngredientsDao {
+	
+	public Connection getConnection();
 
-	List<Ingredients> extraire();
+	//List<Ingredients> extraire();
 
-	void insert(Ingredients ingredients);
+	void insertIngredients(Connection conn,Produits produits) throws SQLException ;
 
-	int update(String ancienNom, String nouveauNom);
+	//int update(String ancienNom, String nouveauNom);
+	
+	//boolean delete(Produits produits);
 	
 }

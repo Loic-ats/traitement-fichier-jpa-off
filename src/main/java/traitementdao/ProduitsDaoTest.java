@@ -47,10 +47,10 @@ public class ProduitsDaoTest {
 	public static void insererProduit(Connection conn, Produits produits) throws SQLException {
 
 
-		// TODO: Premièrement: Je regarde si la catégorie de produit existe en base
-		// TODO: - Cas 1: la catégorie n'existe pas: je la créé
-		// TODO: - Cas 2: la catégorie existe: je la récupère et je l'associe au
-		// produit.
+		// On regarde si la catégorie existe ou non en base
+		// Dans le cas 1: la catégorie n'existe pas et on l'a créé
+		// Dans le cas 2, la catégorie existe, on la récupère et on l'associe au produit
+		// On fait la même chose pour la marque,produits, ingrédients et allergènes.
 
 		Categories categories = produits.getCategorie();
 
@@ -84,6 +84,9 @@ public class ProduitsDaoTest {
 
 			}
 		}
+		
+		res.close();
+		statement.close();
 
 
 		// Insertion ou Select de la marque
@@ -118,6 +121,9 @@ public class ProduitsDaoTest {
 
 			}
 		}
+		
+		res.close();
+		statement.close();
 
 		// Insertion du produit
 
@@ -156,6 +162,9 @@ public class ProduitsDaoTest {
 			}
 
 		}
+		
+		res.close();
+		statement.close();
 
 		// Traitement des ingrédients
 
@@ -194,7 +203,9 @@ public class ProduitsDaoTest {
 				}
 
 			}
-
+			
+			res.close();
+			statement.close();
 		}
 
 
@@ -236,10 +247,12 @@ public class ProduitsDaoTest {
 
 			}
 
+			res.close();
+			statement.close();
 		}
 
 
-		// Traitement des Additifs :
+		// Traitement des Additifs
 
 		List<Additifs> additifs = produits.getAdditif();
 
@@ -276,7 +289,9 @@ public class ProduitsDaoTest {
 				}
 
 			}
-
+			
+			res.close();
+			statement.close();
 		}
 
 	}
