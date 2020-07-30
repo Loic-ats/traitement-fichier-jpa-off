@@ -11,8 +11,7 @@ import java.util.ResourceBundle;
 import objets.Ingredients;
 import objets.Produits;
 
-
-public class IngredientsDaoTest implements IngredientsDao{
+public class IngredientsDaoTest implements IngredientsDao {
 
 	public Connection getConnection() {
 
@@ -40,9 +39,9 @@ public class IngredientsDaoTest implements IngredientsDao{
 
 	@Override
 	public void insertIngredients(Connection conn, Produits produits) throws SQLException {
-		
+
 		Statement statement = conn.createStatement();
-		
+
 		List<Ingredients> ingredients = produits.getIngredient();
 
 		for (Ingredients ingredient : ingredients) {
@@ -78,9 +77,11 @@ public class IngredientsDaoTest implements IngredientsDao{
 				}
 
 			}
-
+			
+			res.close();
+			statement.close();
 		}
-		
+
 	}
-	
+
 }

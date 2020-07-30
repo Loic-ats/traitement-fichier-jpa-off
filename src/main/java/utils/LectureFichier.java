@@ -100,8 +100,9 @@ public class LectureFichier{
 				produit.setPresenceHuilePalme(presenceHuilePalme);
 			
 				System.out.println(produit);
-				ProduitsDaoTest.insererProduit(conn, produit);
 				
+				ProduitsDaoTest.insererProduit(conn, produit);
+			
 			}
 
 			System.out.println("Nombre de lignes :" + lignes.size());

@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 import objets.Additifs;
 import objets.Produits;
 
-public class AdditifDaoTest implements AdditifsDao{
+public class AdditifDaoTest implements AdditifsDao {
 
 	public Connection getConnection() {
 
@@ -39,13 +39,11 @@ public class AdditifDaoTest implements AdditifsDao{
 
 	@Override
 	public void insertAdditifs(Connection conn, Produits produits) throws SQLException {
-		
-		
+
 		List<Additifs> additifs = produits.getAdditif();
-		
+
 		Statement statement = conn.createStatement();
-		
-		
+
 		for (Additifs additif : additifs) {
 
 			statement = conn.createStatement();
@@ -64,11 +62,11 @@ public class AdditifDaoTest implements AdditifsDao{
 
 				statement.executeUpdate("INSERT INTO allergenes (NOM) VALUES ('"
 
-						+  additif.getNom().replace("'", "''") + "')");
+						+ additif.getNom().replace("'", "''") + "')");
 
 				res = statement.executeQuery("SELECT ID, NOM FROM INGREDIENTS WHERE nom='"
 
-						+  additif.getNom().replace("'", "''") + "'");
+						+ additif.getNom().replace("'", "''") + "'");
 
 				if (res.next()) {
 
@@ -80,9 +78,10 @@ public class AdditifDaoTest implements AdditifsDao{
 
 			}
 
+			res.close();
+			statement.close();
 		}
-			
-		
+
 	}
-	
+
 }

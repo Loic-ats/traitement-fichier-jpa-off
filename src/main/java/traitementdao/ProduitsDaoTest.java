@@ -8,14 +8,12 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
 import objets.Additifs;
 import objets.Allergenes;
 import objets.Categories;
 import objets.Ingredients;
 import objets.Marques;
 import objets.Produits;
-
 
 public class ProduitsDaoTest {
 
@@ -43,9 +41,7 @@ public class ProduitsDaoTest {
 
 	}
 
-
 	public static void insererProduit(Connection conn, Produits produits) throws SQLException {
-
 
 		// On regarde si la catégorie existe ou non en base
 		// Dans le cas 1: la catégorie n'existe pas et on l'a créé
@@ -84,10 +80,9 @@ public class ProduitsDaoTest {
 
 			}
 		}
-		
+
 		res.close();
 		statement.close();
-
 
 		// Insertion ou Select de la marque
 
@@ -121,7 +116,7 @@ public class ProduitsDaoTest {
 
 			}
 		}
-		
+
 		res.close();
 		statement.close();
 
@@ -162,7 +157,7 @@ public class ProduitsDaoTest {
 			}
 
 		}
-		
+
 		res.close();
 		statement.close();
 
@@ -203,11 +198,10 @@ public class ProduitsDaoTest {
 				}
 
 			}
-			
+
 			res.close();
 			statement.close();
 		}
-
 
 		// Traitement des Allergenes
 
@@ -251,7 +245,6 @@ public class ProduitsDaoTest {
 			statement.close();
 		}
 
-
 		// Traitement des Additifs
 
 		List<Additifs> additifs = produits.getAdditif();
@@ -274,11 +267,11 @@ public class ProduitsDaoTest {
 
 				statement.executeUpdate("INSERT INTO allergenes (NOM) VALUES ('"
 
-						+  additif.getNom().replace("'", "''") + "')");
+						+ additif.getNom().replace("'", "''") + "')");
 
 				res = statement.executeQuery("SELECT ID, NOM FROM INGREDIENTS WHERE nom='"
 
-						+  additif.getNom().replace("'", "''") + "'");
+						+ additif.getNom().replace("'", "''") + "'");
 
 				if (res.next()) {
 
@@ -289,7 +282,7 @@ public class ProduitsDaoTest {
 				}
 
 			}
-			
+
 			res.close();
 			statement.close();
 		}

@@ -73,6 +73,8 @@ public class CategoriesDaoTest implements CategoriesDao{
 			}
 		}
 		
+		res.close();
+		statement.close();
 	}
 	
 }

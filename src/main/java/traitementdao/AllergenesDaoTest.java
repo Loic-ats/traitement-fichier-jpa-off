@@ -77,8 +77,12 @@ public class AllergenesDaoTest implements AllergenesDao{
 				}
 
 			}
-
+			
+			//Permet de fermer le statement canal ouvert
+			res.close();
+			statement.close();
 		}
-		
+
+	
 	}
 }
